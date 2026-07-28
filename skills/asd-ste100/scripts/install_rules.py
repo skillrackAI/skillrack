@@ -105,6 +105,23 @@ def build_block(p):
     return "\n".join(lines) + "\n"
 
 
+def resolve_target(raw):
+    """Only ever write a file called CLAUDE.md.
+
+    The skill passes a fixed path, so this is not reachable in normal use. It
+    exists because the script is also a standalone write primitive, and one
+    that will create directories and write anywhere is worth constraining
+    before something else learns to call it.
+    """
+    # realpath, not abspath: abspath leaves symlinks unresolved, and open()
+    # follows them — a link named CLAUDE.md would pass the check and write
+    # through to whatever it points at. Resolve first, then check.
+    target = os.path.realpath(os.path.expanduser(raw))
+    if os.path.basename(target) != "CLAUDE.md":
+        sys.exit(f"refusing: --target must name a CLAUDE.md file, got {target}")
+    return target
+
+
 def install(block, target):
     existing = ""
     if os.path.exists(target):
@@ -147,8 +164,9 @@ def main():
             print("\n(dry run: pass --target to install)", file=sys.stderr)
         return
 
-    action = install(block, args.target)
-    print(f"{action} {args.target}")
+    target = resolve_target(args.target)
+    action = install(block, target)
+    print(f"{action} {target}")
     print(f"Block is delimited by {BEGIN} / {END}. Delete those lines and everything between to remove it.")
 
 
