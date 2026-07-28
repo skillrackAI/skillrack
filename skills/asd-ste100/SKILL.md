@@ -1,11 +1,13 @@
 ---
 name: asd-ste100
-description: Check and rewrite text against ASD-STE100 Simplified Technical English (STE), and install STE writing rules into a CLAUDE.md. Use whenever the user asks to check, lint, review, or rewrite writing for STE compliance, mentions "STE", "Simplified Technical English", "ASD-STE100", or controlled language, or wants technical documentation (procedures, manuals, warnings, maintenance instructions, work cards) made simpler or clearer. Also use for general "check my technical writing" requests on procedural or descriptive documentation, for "add the STE rules to my CLAUDE.md" or "write in STE by default" requests, and for "change my STE profile".
+description: Check and rewrite technical documentation against ASD-STE100 Simplified Technical English (STE), a house style guide, or a saved profile that mixes the two, then install those writing rules into a CLAUDE.md. Use whenever the user asks to check, lint, review, or rewrite writing against STE, a controlled language, a house style guide, a style guide, or team writing rules, or mentions "STE", "Simplified Technical English", "ASD-STE100", or "controlled English". Also use when procedures, manuals, warnings, maintenance instructions, or work cards need to be made simpler or clearer, for general "check my technical writing" requests, for "add the writing rules to my CLAUDE.md" or "write in STE by default", and for "change my STE profile" or "change my writing style rules".
 ---
 
 # ASD-STE100 Writing Checker
 
-Check text against ASD-STE100 Simplified Technical English. Produce a numbered violation report, a compliant rewrite, and an independent audit.
+Check technical documentation against ASD-STE100 Simplified Technical English, a house style guide, or a profile that mixes the two. Produce a numbered violation report, a rewrite, and an independent audit.
+
+This is not a pure STE tool by design. Most teams arrive with a style guide already in force, and a checker that ignores it gets ignored back. The profile in step 0 decides which standard wins where they disagree, and the report always names which profile produced it.
 
 STE is a controlled language for technical documentation. It has two parts: writing rules (grammar, style, sentence limits) and a dictionary of approved words, where each approved word carries one meaning and one part of speech. The authoritative specification is free from asd-ste100.org. This skill applies the rules and the best-known dictionary substitutions, and marks uncertain vocabulary as `word (verify)` rather than guessing.
 
