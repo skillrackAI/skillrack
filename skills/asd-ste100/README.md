@@ -109,6 +109,12 @@ claude-md/ste-custom-example.md   example profile with overrides
 4. Rules here are summarised in this project's own words. Read the specification itself for the authoritative text.
 5. Written against **Issue 9, 15 January 2025**, the current edition. Issue 10 is due January 2028. Issue 9 has 53 writing rules; this summary covers the ones that matter most in practice, so it is shorter than the source by design.
 
+## Related work
+
+[nuelcyoung/asd-ste100](https://github.com/nuelcyoung/asd-ste100) is an STE skill for opencode agents. It is leaner than this one — a compact rule reference with worked before-and-after transformations, plus background on STE's history, governance, and adoption.
+
+Reach for it instead of this if you are on opencode, or if you want the rules to hand without the tooling around them. This one trades that compactness for a deterministic lint pass, style profiles for teams whose house guide contradicts STE, and an audit agent that re-checks the output with fresh context.
+
 ## Trademark and copyright
 
 ASD-STE100 and Simplified Technical English are trademarks of ASD, AeroSpace and Defence Industries Association of Europe, Brussels (EU trade mark 017966390). The specification and its dictionary are copyright ASD.
