@@ -121,16 +121,18 @@ Never edit CLAUDE.md by hand for this. The script is idempotent and the manual e
    ```
    Pass the limit from the loaded profile. For text pasted in chat, write it to a temp file first. Script output is candidates, not verdicts — judge each one, and discard any that the profile has overridden.
 
-3. **Read `references/writing-rules.md`.** Check every category: words, noun clusters, verbs, sentences, procedures, descriptive text, safety instructions, punctuation. Skip only the rules the profile overrides.
+3. **Triage with `references/checklist.md`.** It lists the failures in order of how often they actually occur, so one read down it catches most of what is wrong before the systematic sweep. Fix sentence length first — long sentences are where passives, gerunds, and multiple instructions hide, so the other counts drop on their own. The checklist also ends with the mistakes checkers themselves make; read those before writing any report, because a report full of false positives gets discarded whole and the real findings go with it.
 
-4. **Check vocabulary** against `references/word-substitutions.md`. Two exemptions matter more than anything else here: Technical Names (nouns for parts, tools, systems, such as "overhead panel") and Technical Verbs (manufacturing and maintenance actions, such as "to drill", "to torque") are always allowed, even when absent from the dictionary. Flagging a real part name as a violation destroys trust in the whole report, so when in doubt, leave it alone.
+4. **Read `references/writing-rules.md`.** Now do the systematic sweep: words, noun clusters, verbs, sentences, procedures, descriptive text, safety instructions, punctuation. Skip only the rules the profile overrides.
 
-5. **Write the report** using the template below, then the rewrite.
+5. **Check vocabulary** against `references/word-substitutions.md`. Two exemptions matter more than anything else here: Technical Names (nouns for parts, tools, systems, such as "overhead panel") and Technical Verbs (manufacturing and maintenance actions, such as "to drill", "to torque") are always allowed, even when absent from the dictionary. Flagging a real part name as a violation destroys trust in the whole report, so when in doubt, leave it alone.
 
-6. **Independent audit (mandatory).** Spawn a subagent with fresh context. It must see the inputs, never your reasoning. Give it:
+6. **Write the report** using the template below, then the rewrite.
+
+7. **Independent audit (mandatory).** Spawn a subagent with fresh context. It must see the inputs, never your reasoning. Give it:
    - The original text (file path).
    - The finished report and rewrite (save to a temp file first).
-   - Paths to `references/writing-rules.md`, `references/word-substitutions.md`, `references/auditor.md`.
+   - Paths to `references/writing-rules.md`, `references/word-substitutions.md`, `references/checklist.md`, `references/auditor.md`.
    - The active profile, verbatim.
 
    Tell it to follow `references/auditor.md` exactly. Run it synchronously. Append its verdict as an `## Audit` section. On FAIL, fix the problems and re-run the audit once. Report the final verdict either way — a hidden FAIL makes the whole report worthless. Where no subagent tool exists, do a self-audit and label it "self-audit, not independent".

@@ -91,6 +91,7 @@ The skill and the rules serve different jobs. The rules shape what Claude writes
 skills/asd-ste100/
   SKILL.md                        skill definition and workflow
   references/writing-rules.md     the STE rules, by category
+  references/checklist.md         common errors, ordered by frequency
   references/word-substitutions.md  common unapproved to approved pairs
   references/auditor.md           instructions for the audit agent
   scripts/ste_lint.py             deterministic lint pass
