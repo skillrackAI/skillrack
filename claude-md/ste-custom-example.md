@@ -1,6 +1,6 @@
 # Technical Writing — ASD-STE100 (custom example)
 
-Example of a profile that keeps STE grammar but overrides three rules to match a house style guide. Copy and edit. Output from this profile is STE-derived, not certifiable.
+Example of a profile that keeps STE grammar but overrides three rules to match a house style guide. Copy and edit. This profile deliberately breaks STE rules S-4 and X-1, so its output is STE-derived rather than STE.
 
 Scope: procedures, manuals, warnings, work cards, maintenance steps.
 
@@ -26,4 +26,4 @@ Scope: procedures, manuals, warnings, work cards, maintenance steps.
 15. Warnings state command first, then reason. "DO NOT TOUCH VALVE. VALVE IS HOT."
 16. Max 6 sentences per paragraph in descriptive text.
 
-Certifiable output: use `ste-strict.md` instead, or run the skill with the strict profile.
+Full STE: use `ste-strict.md` instead, or run the skill with the strict profile.

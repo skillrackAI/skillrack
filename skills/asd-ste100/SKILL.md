@@ -20,7 +20,7 @@ If no profile exists, ask ONE question. Present it exactly like this and wait fo
 ```
 No STE profile found. Which style?
 
-1. Strict — full ASD-STE100. Certifiable output. Nothing overridden.
+1. Strict — every STE rule applied. Nothing overridden.
 2. Readable — STE grammar, but numbered lists throughout and a 20-word cap everywhere.
 3. Custom — I ask about each of the four conflicts, one at a time.
 ```
@@ -127,7 +127,8 @@ Report rules:
 5. Long text (more than about two pages): rewrite the worst sections, offer the rest as follow-up.
 6. Zero violations: say so, skip the rewrite, still run the audit.
 7. Never use markdown blockquotes. Use quotation marks or fenced blocks.
-8. Say plainly when output is not certifiable, which is any profile except strict.
+8. Name the profile in every report. On any profile except strict, say which rules were overridden, so nobody mistakes the output for full STE.
+9. Never describe output as certified, approved, or endorsed. This is an unofficial tool. Only ASD and the STEMG speak to conformance.
 
 ## Rewriting guidance
 

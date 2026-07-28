@@ -26,11 +26,13 @@ STE collides with most house style guides in four predictable places. On first r
 
 Three presets ship with it:
 
-1. **Strict** — full ASD-STE100, nothing overridden. Use this when output must be certifiable.
+1. **Strict** — every rule applied, nothing overridden. Use this when the output has to hold up to review.
 2. **Readable** — STE grammar, numbered lists throughout, flat 20-word cap.
 3. **Custom** — the skill asks about each conflict one at a time.
 
-Any profile except strict produces STE-derived output, not certifiable ASD-STE100. The skill says so in every report rather than letting you assume otherwise.
+Any profile except strict deliberately breaks STE rules, so its output is STE-derived rather than STE. The skill says which profile produced a report rather than letting you assume.
+
+This is an unofficial tool. It does not certify anything, and no output from it should be described as approved or endorsed by ASD. Only ASD and the STEMG speak to what conforms to the specification.
 
 ## Install
 
@@ -71,11 +73,19 @@ claude-md/
 
 ## Scope and limits
 
-1. The bundled word list covers common substitutions. It is not the full dictionary, which runs to roughly 900 approved words.
-2. Uncertain vocabulary is flagged `word (verify)` rather than guessed at, so you know what still needs a human check.
+1. The bundled word list is a short set of well-known substitutions written for this tool. It is not the ASD dictionary and is no substitute for it.
+2. Uncertain vocabulary is flagged `word (verify)` rather than guessed at, so you know what still needs checking against the official dictionary.
 3. Technical Names and Technical Verbs are exempt from vocabulary checks by design. Part names and maintenance verbs are never simplified.
-4. The official specification and dictionary are free from [asd-ste100.org](https://asd-ste100.org). This project is an independent tool and is not affiliated with or endorsed by AeroSpace and Defence Industries Association of Europe.
+4. Rules here are summarised in this project's own words. Read the specification itself for the authoritative text.
+
+## Trademark and copyright
+
+ASD-STE100 and Simplified Technical English are trademarks of ASD, AeroSpace and Defence Industries Association of Europe, Brussels (EU trade mark 017966390). The specification and its dictionary are copyright ASD.
+
+This project is independent and unaffiliated. It is not endorsed, approved, or certified by ASD or the STEMG. The standard is named here only to describe what the tool checks against.
+
+The specification is available at no cost from [asd-ste100.org](https://asd-ste100.org). No part of it is reproduced in this repository, and the dictionary is not redistributed here. Get both from ASD directly.
 
 ## Licence
 
-MIT. See [LICENSE](LICENSE).
+MIT, covering this tool only. See [LICENSE](LICENSE). The licence grants no rights in ASD's specification, dictionary, or trademarks.
