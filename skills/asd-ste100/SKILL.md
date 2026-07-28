@@ -1,6 +1,6 @@
 ---
 name: asd-ste100
-description: Check and rewrite text against ASD-STE100 Simplified Technical English (STE). Use whenever the user asks to check, lint, review, or rewrite writing for STE compliance, mentions "STE", "Simplified Technical English", "ASD-STE100", or controlled language, or wants technical documentation (procedures, manuals, warnings, maintenance instructions, work cards) made simpler, clearer, or compliant. Also use for general "check my technical writing" requests on procedural or descriptive documentation.
+description: Check and rewrite text against ASD-STE100 Simplified Technical English (STE), and install STE writing rules into a CLAUDE.md. Use whenever the user asks to check, lint, review, or rewrite writing for STE compliance, mentions "STE", "Simplified Technical English", "ASD-STE100", or controlled language, or wants technical documentation (procedures, manuals, warnings, maintenance instructions, work cards) made simpler or clearer. Also use for general "check my technical writing" requests on procedural or descriptive documentation, for "add the STE rules to my CLAUDE.md" or "write in STE by default" requests, and for "change my STE profile".
 ---
 
 # ASD-STE100 Writing Checker
@@ -60,13 +60,54 @@ Write the answers to `~/.claude/ste-profile.json` so the questions never repeat:
   "articles": "keep",
   "lists": "ste",
   "sentence_limit": {"procedural": 20, "descriptive": 25, "carve_out": false},
-  "warning_placement": "before"
+  "warning_placement": "before",
+  "claude_md_offered": true
 }
 ```
 
 Presets map to these values. Strict: articles `keep`, lists `ste`, limits 20/25 no carve-out, warnings `before`. Readable: articles `keep`, lists `numbered`, limits 20/20 no carve-out, warnings `before`.
 
 To change the profile later, the user says "change my STE profile" — delete the file and re-ask.
+
+## Step 0b — offer the CLAUDE.md rules, once
+
+Checking a document after the fact is worth less than writing it correctly the first time. So once the profile is saved, offer to install the matching rules into a CLAUDE.md — but only when `claude_md_offered` is absent or false, and only after the current check finishes. Interrupting the task the user actually asked for, to pitch a config change, is a bad trade.
+
+Ask one question:
+
+```
+Want these rules in a CLAUDE.md, so I write this way by default?
+
+1. Global — ~/.claude/CLAUDE.md, applies to every project
+2. This project — ./CLAUDE.md
+3. No thanks
+```
+
+Set `claude_md_offered: true` whatever they answer, so the offer never repeats. Only the user reopens it.
+
+## Installing the rules into CLAUDE.md
+
+Run this flow when the user picks 1 or 2 above, or later says anything like "add the STE rules to my CLAUDE.md", "make this the default", or "I want you writing in STE all the time".
+
+1. Confirm the target file. Global is `~/.claude/CLAUDE.md`, project is `./CLAUDE.md` in the working directory. If the user has not said which, ask — the scopes differ a lot and the wrong one is annoying to discover later.
+
+2. Generate the block and show it first. It is built from the saved profile, so what Claude writes and what the skill checks stay in step:
+   ```bash
+   python3 scripts/install_rules.py --profile ~/.claude/ste-profile.json --dry-run
+   ```
+
+3. Show the output and get an explicit yes. This writes to a file the user has not opened, and CLAUDE.md shapes every future session, so surprise here is expensive.
+
+4. On yes, install:
+   ```bash
+   python3 scripts/install_rules.py --profile ~/.claude/ste-profile.json --target ~/.claude/CLAUDE.md
+   ```
+
+5. Tell the user what happened: which file, whether the block was created, appended, or updated, and how to remove it. The script prints all of this.
+
+The block sits between `<!-- BEGIN asd-ste100 -->` and `<!-- END asd-ste100 -->`. Re-running replaces it in place rather than appending a duplicate, and everything outside the markers is untouched — so after a profile change, just run it again.
+
+Never edit CLAUDE.md by hand for this. The script is idempotent and the manual equivalent is not, which is how people end up with three stale copies of the rules in one file.
 
 ## Workflow
 

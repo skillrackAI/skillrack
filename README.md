@@ -50,12 +50,30 @@ check this procedure against STE
 
 ## CLAUDE.md rule sets
 
-If you want Claude writing in STE by default rather than checking after the fact, paste one of these into your `CLAUDE.md`:
+Checking a document after the fact is worth less than writing it correctly the first time. The skill offers to install matching rules into your `CLAUDE.md`, so Claude writes in STE by default:
 
-1. `claude-md/ste-strict.md` — full STE, 26 rules, no overrides.
-2. `claude-md/ste-custom-example.md` — worked example of a profile that overrides three rules for a house style.
+```
+add the STE rules to my CLAUDE.md
+```
 
-The skill and the CLAUDE.md rules serve different jobs. The rules shape what Claude writes. The skill proves it, with a lint pass and an independent audit.
+It asks global or project-level, shows you the exact block, and waits for a yes before writing. The block is generated from your saved profile, so what Claude writes and what the skill checks cannot drift apart.
+
+The block is delimited:
+
+```
+<!-- BEGIN asd-ste100 -->
+...
+<!-- END asd-ste100 -->
+```
+
+Re-running updates it in place rather than appending a duplicate, and anything outside the markers is left alone. Change your profile, run it again. To remove it, delete the markers and everything between.
+
+Static copies live in `claude-md/` if you would rather paste by hand:
+
+1. `ste-strict.md` — full STE, no overrides.
+2. `ste-custom-example.md` — worked example of a profile that overrides three rules for a house style.
+
+The skill and the rules serve different jobs. The rules shape what Claude writes. The skill proves it, with a lint pass and an independent audit.
 
 ## Repository layout
 
@@ -66,6 +84,7 @@ skills/asd-ste100/
   references/word-substitutions.md  common unapproved to approved pairs
   references/auditor.md           instructions for the audit agent
   scripts/ste_lint.py             deterministic lint pass
+  scripts/install_rules.py        generates CLAUDE.md rules from your profile
 claude-md/
   ste-strict.md                   full STE for CLAUDE.md
   ste-custom-example.md           example profile with overrides
