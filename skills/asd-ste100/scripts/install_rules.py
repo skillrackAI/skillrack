@@ -113,7 +113,10 @@ def resolve_target(raw):
     that will create directories and write anywhere is worth constraining
     before something else learns to call it.
     """
-    target = os.path.abspath(os.path.expanduser(raw))
+    # realpath, not abspath: abspath leaves symlinks unresolved, and open()
+    # follows them — a link named CLAUDE.md would pass the check and write
+    # through to whatever it points at. Resolve first, then check.
+    target = os.path.realpath(os.path.expanduser(raw))
     if os.path.basename(target) != "CLAUDE.md":
         sys.exit(f"refusing: --target must name a CLAUDE.md file, got {target}")
     return target
