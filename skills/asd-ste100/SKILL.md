@@ -103,17 +103,22 @@ Run this flow when the user picks 1 or 2 above, or later says anything like "add
 
 1. Confirm the target file. Global is `~/.claude/CLAUDE.md`, project is `./CLAUDE.md` in the working directory. If the user has not said which, ask — the scopes differ a lot and the wrong one is annoying to discover later.
 
-2. Generate the block and show it first. It is built from the saved profile, so what Claude writes and what the skill checks stay in step:
+2. Generate the block and show it first. It is built from the saved profile, so what Claude writes and what the skill checks stay in step (the dry run needs no target):
    ```bash
    python3 scripts/install_rules.py --profile ~/.claude/ste-profile.json --dry-run
    ```
 
 3. Show the output and get an explicit yes. This writes to a file the user has not opened, and CLAUDE.md shapes every future session, so surprise here is expensive.
 
-4. On yes, install:
+4. On yes, install with the path the user chose in step 1 — global:
    ```bash
    python3 scripts/install_rules.py --profile ~/.claude/ste-profile.json --target ~/.claude/CLAUDE.md
    ```
+   or project:
+   ```bash
+   python3 scripts/install_rules.py --profile ~/.claude/ste-profile.json --target ./CLAUDE.md
+   ```
+   The command must carry the chosen scope. Running the global variant after the user picked "this project" writes every future session's config, not the one repo they scoped it to.
 
 5. Tell the user what happened: which file, whether the block was created, appended, or updated, and how to remove it. The script prints all of this.
 
