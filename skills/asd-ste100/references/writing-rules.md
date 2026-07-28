@@ -1,6 +1,10 @@
 # ASD-STE100 Writing Rules — Working Summary
 
-Condensed from the ASD-STE100 specification (free from asd-ste100.org). Rule IDs below (W-1, V-2, …) are internal to this skill for stable referencing; the official spec has its own numbering.
+A condensed, independently written summary of the ASD-STE100 writing rules. It is not the specification and does not replace it. The specification is free from asd-ste100.org.
+
+**Current edition: Issue 9, published 15 January 2025.** Issue 10 is scheduled for January 2028. Issue 9 carries 53 writing rules; this summary covers the ones that matter most in practice, grouped into 8 categories, so it is deliberately shorter than the source. Check anything load-bearing against the current issue.
+
+Rule IDs below (W-1, V-2, …) are internal to this skill so that reports can reference them stably. They are not the specification's own numbering, and should not be quoted as such.
 
 ## 1. Words (W)
 

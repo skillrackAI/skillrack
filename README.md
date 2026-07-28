@@ -106,6 +106,7 @@ claude-md/
 2. Uncertain vocabulary is flagged `word (verify)` rather than guessed at, so you know what still needs checking against the official dictionary.
 3. Technical Names and Technical Verbs are exempt from vocabulary checks by design. Part names and maintenance verbs are never simplified.
 4. Rules here are summarised in this project's own words. Read the specification itself for the authoritative text.
+5. Written against **Issue 9, 15 January 2025**, the current edition. Issue 10 is due January 2028. Issue 9 has 53 writing rules; this summary covers the ones that matter most in practice, so it is shorter than the source by design.
 
 ## Trademark and copyright
 
