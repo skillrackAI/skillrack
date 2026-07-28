@@ -4,6 +4,16 @@ A Claude Code skill that checks technical writing against [ASD-STE100 Simplified
 
 STE is the controlled language used for aerospace and defence maintenance documentation. It restricts grammar and vocabulary so that a procedure means exactly one thing to a technician reading it in a second language, at night, on a wet ramp. The rules are useful well outside aviation — anywhere an instruction being misread is expensive.
 
+## Why it helps
+
+The rules are worth following even when nobody is auditing you, because of what they do to a document:
+
+**Readability.** Short sentences, common words, active voice, and one instruction at a time are the same levers every readability formula measures. Text that follows STE reads easily for non-native speakers, survives machine translation, and stops hiding meaning behind vocabulary. You do not have to care about STE to want that.
+
+**Scannability.** Nobody reads a procedure start to finish. They scan for the step they are on. STE pushes sequences out of prose and into numbered lists, caps paragraphs, puts the condition before the command, and places warnings where they get seen rather than where they read well. A document that follows those rules can be used at arm's length, one step at a time.
+
+This tool does not score either quality. It applies the rules that produce them, and shows you what changed.
+
 ## What this does
 
 1. Lints text for sentence length, -ing forms, passive voice, and unapproved vocabulary.
