@@ -110,12 +110,13 @@ Run this flow when the user picks 1 or 2 above, or later says anything like "add
 
 3. Show the output and get an explicit yes. This writes to a file the user has not opened, and CLAUDE.md shapes every future session, so surprise here is expensive.
 
-4. On yes, install with the path the user chose in step 1 — global:
+4. On yes, install with the scope chosen in step 1:
    ```bash
+   # global
    python3 scripts/install_rules.py --profile ~/.claude/ste-profile.json --target ~/.claude/CLAUDE.md
    ```
-   or project:
    ```bash
+   # project
    python3 scripts/install_rules.py --profile ~/.claude/ste-profile.json --target ./CLAUDE.md
    ```
    The command must carry the chosen scope. Running the global variant after the user picked "this project" writes every future session's config, not the one repo they scoped it to.
