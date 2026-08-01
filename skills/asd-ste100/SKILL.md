@@ -1,6 +1,12 @@
 ---
 name: asd-ste100
 description: Check and rewrite technical documentation against ASD-STE100 Simplified Technical English (STE), a house style guide, or a saved profile that mixes the two, then install those writing rules into a CLAUDE.md. Use whenever the user asks to check, lint, review, or rewrite writing against STE, a controlled language, a house style guide, a style guide, or team writing rules, or mentions "STE", "Simplified Technical English", "ASD-STE100", or "controlled English". Also use when procedures, manuals, warnings, maintenance instructions, or work cards need to be made simpler or clearer, for general "check my technical writing" requests, for "add the writing rules to my CLAUDE.md" or "write in STE by default", and for "change my STE profile" or "change my writing style rules".
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash(python3 *)
+  - Agent
 ---
 
 # ASD-STE100 Writing Checker
